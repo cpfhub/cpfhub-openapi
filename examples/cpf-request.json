@@ -1,0 +1,7 @@
+{
+  "method": "GET",
+  "url": "https://api.cpfhub.io/cpf/12345678900",
+  "headers": {
+    "x-api-key": "YOUR_API_KEY"
+  }
+}
