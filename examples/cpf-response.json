@@ -1,13 +1,17 @@
 {
-  "success": true,
-  "data": {
-    "cpf": "12345678900",
-    "name": "Fulano de Tal",
-    "nameUpper": "FULANO DE TAL",
-    "gender": "M",
-    "birthDate": "15/06/1990",
-    "day": 15,
-    "month": 6,
-    "year": 1990
+  "_description": "Example HTTP response from a successful CPF lookup.",
+  "status": 200,
+  "body": {
+    "success": true,
+    "data": {
+      "cpf": "12345678909",
+      "name": "Fulano de Tal",
+      "nameUpper": "FULANO DE TAL",
+      "gender": "M",
+      "birthDate": "15/06/1990",
+      "day": 15,
+      "month": 6,
+      "year": 1990
+    }
   }
 }

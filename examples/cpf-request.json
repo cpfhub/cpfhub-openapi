@@ -1,7 +1,9 @@
 {
+  "_description": "Example HTTP request to retrieve identity data from a Brazilian CPF number.",
   "method": "GET",
-  "url": "https://api.cpfhub.io/cpf/12345678900",
+  "url": "https://api.cpfhub.io/cpf/12345678909",
   "headers": {
     "x-api-key": "YOUR_API_KEY"
-  }
+  },
+  "_curl_equivalent": "curl -X GET 'https://api.cpfhub.io/cpf/12345678909' -H 'x-api-key: YOUR_API_KEY'"
 }
