@@ -100,6 +100,8 @@ MIT © [CPFHub.io](https://cpfhub.io)
 
 # Português
 
+[🇺🇸 English](#cpfhubio-openapi-specification) | 🇧🇷 **Português**
+
 Este repositório contém a Especificação OpenAPI oficial para a API do CPFHub.io.
 
 ## O que é o CPFHub.io?
@@ -110,14 +112,14 @@ O CPFHub.io é uma API REST que fornece serviços de consulta de CPF em tempo re
 
 ## Autenticação
 
-Todas as requisições exigem uma chave de API no cabeçalho `x-api-key`.
+Todas as requisições à API exigem uma chave de API passada no cabeçalho `x-api-key`.
 
 ```http
 GET https://api.cpfhub.io/cpf/12345678909
 x-api-key: SUA_CHAVE_DE_API
 ```
 
-Obtenha sua chave gratuita em [app.cpfhub.io](https://app.cpfhub.io) — sem cartão de crédito.
+Obtenha sua chave de API gratuita em [app.cpfhub.io](https://app.cpfhub.io) — sem cartão de crédito.
 
 ## Exemplo Rápido
 
@@ -126,15 +128,46 @@ curl -X GET "https://api.cpfhub.io/cpf/12345678909" \
   -H "x-api-key: SUA_CHAVE_DE_API"
 ```
 
+**Resposta:**
+
+```json
+{
+  "success": true,
+  "data": {
+    "cpf": "12345678909",
+    "name": "Fulano de Tal",
+    "nameUpper": "FULANO DE TAL",
+    "gender": "M",
+    "birthDate": "15/06/1990",
+    "day": 15,
+    "month": 6,
+    "year": 1990
+  }
+}
+```
+
 ## Especificação OpenAPI
 
 O arquivo `openapi.yaml` neste repositório é a versão oficial e mais atualizada da especificação da API do CPFHub.io.
 
-**Link direto para a especificação:**
+**Link direto para a especificação raw:**
 
 ```
 https://raw.githubusercontent.com/cpfhub/cpfhub-openapi/main/openapi.yaml
 ```
+
+> **Nota:** Uma versão hospedada publicamente em `https://api.cpfhub.io/openapi.yaml` estará disponível em breve para consumo direto por agentes de IA.
+
+## Definição de Tool (Ferramenta de IA)
+
+O arquivo `tool-definition.json` contém a definição canônica de ferramenta de IA para a função `get_person_by_cpf`, pronta para uso em servidores MCP, ferramentas LangChain, function calling do OpenAI e outros frameworks de agentes.
+
+## Exemplos
+
+Veja o diretório `examples/` para exemplos de requisições e respostas:
+
+- [`examples/cpf-request.json`](examples/cpf-request.json) — exemplo de requisição HTTP
+- [`examples/cpf-response.json`](examples/cpf-response.json) — exemplo de resposta HTTP
 
 ## Links Importantes
 
@@ -143,6 +176,21 @@ https://raw.githubusercontent.com/cpfhub/cpfhub-openapi/main/openapi.yaml
 | Documentação | [https://cpfhub.io/documentacao](https://cpfhub.io/documentacao) |
 | Dashboard | [https://app.cpfhub.io](https://app.cpfhub.io) |
 | Servidor MCP (Agentes de IA) | [https://github.com/cpfhub/cpfhub-mcp](https://github.com/cpfhub/cpfhub-mcp) |
+| SDK Node.js | [https://github.com/cpfhub/cpfhub-node](https://github.com/cpfhub/cpfhub-node) |
+| SDK Python | [https://github.com/cpfhub/cpfhub-python](https://github.com/cpfhub/cpfhub-python) |
+| SDK PHP | [https://github.com/cpfhub/cpfhub-php](https://github.com/cpfhub/cpfhub-php) |
+| SDK Go | [https://github.com/cpfhub/cpfhub-go](https://github.com/cpfhub/cpfhub-go) |
+| SDK Ruby | [https://github.com/cpfhub/cpfhub-ruby](https://github.com/cpfhub/cpfhub-ruby) |
+| SDK Java | [https://github.com/cpfhub/cpfhub-java](https://github.com/cpfhub/cpfhub-java) |
+| SDK .NET | [https://github.com/cpfhub/cpfhub-dotnet](https://github.com/cpfhub/cpfhub-dotnet) |
+| SDK Rust | [https://github.com/cpfhub/cpfhub-rust](https://github.com/cpfhub/cpfhub-rust) |
+| SDK Elixir | [https://github.com/cpfhub/cpfhub-elixir](https://github.com/cpfhub/cpfhub-elixir) |
+| SDK Dart/Flutter | [https://github.com/cpfhub/cpfhub-dart](https://github.com/cpfhub/cpfhub-dart) |
+| SDK Lua | [https://github.com/cpfhub/cpfhub-lua](https://github.com/cpfhub/cpfhub-lua) |
+| SDK Nim | [https://github.com/cpfhub/cpfhub-nim](https://github.com/cpfhub/cpfhub-nim) |
+| SDK Swift | [https://github.com/cpfhub/cpfhub-swift](https://github.com/cpfhub/cpfhub-swift) |
+| SDK R | [https://github.com/cpfhub/cpfhub-r](https://github.com/cpfhub/cpfhub-r) |
+| Nó n8n | [https://github.com/cpfhub/n8n-nodes-cpfhub](https://github.com/cpfhub/n8n-nodes-cpfhub) |
 
 ## Licença
 
