@@ -3,14 +3,14 @@ info:
   title: CPFHub.io API
   version: 1.0.0
   description: |
-    Especificação OpenAPI oficial da API CPFHub.io.
+    Official OpenAPI specification for the CPFHub.io API.
 
-    Consulte dados de identidade (nome, gênero, data de nascimento) a partir de um CPF brasileiro.
+    Retrieve identity data (name, gender, date of birth) from a Brazilian CPF number.
 
-    Todas as requisições requerem uma API Key enviada no header `x-api-key`.
-    Acesse https://app.cpfhub.io para gerar sua chave.
+    All requests require an API key sent in the `x-api-key` header.
+    Sign up at https://app.cpfhub.io to generate your key.
   contact:
-    name: Suporte CPFHub
+    name: CPFHub Support
     url: https://cpfhub.io
     email: support@cpfhub.io
   license:
@@ -20,11 +20,11 @@ info:
 
 servers:
   - url: https://api.cpfhub.io
-    description: Produção
+    description: Production
 
 tags:
   - name: CPF
-    description: Operações de consulta de CPF
+    description: Brazilian CPF identity lookup operations
 
 security:
   - ApiKeyAuth: []
@@ -34,13 +34,13 @@ paths:
     get:
       tags:
         - CPF
-      summary: Consultar CPF
+      summary: Retrieve identity data from CPF
       operationId: getPersonByCpf
       description: |
-        Consulta um CPF e retorna dados estruturados incluindo nome, data de nascimento e gênero.
+        Retrieve structured identity data (name, gender, date of birth) from a Brazilian CPF number.
 
-        **Importante:** CPFs não encontrados na base de dados não consomem crédito.
-        Apenas requisições que retornam dados são contabilizadas no plano.
+        **Note:** CPFs not found in the database do not consume credits.
+        Only requests that return data are counted toward your plan quota.
       parameters:
         - $ref: '#/components/parameters/Cpf'
         - in: header
@@ -52,13 +52,13 @@ paths:
             example: application/json
       responses:
         '200':
-          description: Consulta realizada com sucesso.
+          description: Successful lookup. Identity data returned.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/CpfResponse'
         '400':
-          description: Requisição inválida — CPF mal formatado ou parâmetro ausente.
+          description: Bad Request — Malformed CPF or missing parameter.
           content:
             application/json:
               schema:
@@ -69,7 +69,7 @@ paths:
                 error:
                   message: "CPF inválido"
         '401':
-          description: Não autorizado — API Key inválida ou ausente.
+          description: Unauthorized — Missing or invalid API key.
           content:
             application/json:
               schema:
@@ -80,7 +80,7 @@ paths:
                 error:
                   message: "Chave de API inválida ou ausente"
         '404':
-          description: CPF não encontrado na base de dados.
+          description: Not Found — CPF not found in the database.
           content:
             application/json:
               schema:
@@ -92,14 +92,14 @@ paths:
                   message: "CPF não encontrado"
         '429':
           description: |
-            Muitas requisições — limite de taxa excedido.
+            Too Many Requests — Rate limit exceeded.
 
-            Os headers da resposta incluem informações sobre o limite e quando ele será resetado.
+            Response headers include rate limit details and reset time.
 
-            Limites por plano:
-            - Gratuito: 1 requisição a cada 2 segundos
-            - Pro: 1 requisição por segundo
-            - Corporativo: personalizado
+            Rate limits by plan:
+            - Free: 1 request every 2 seconds
+            - Pro: 1 request per second
+            - Enterprise: custom
           content:
             application/json:
               schema:
@@ -110,7 +110,7 @@ paths:
                 error:
                   message: "Limite de requisições excedido"
         '500':
-          description: Erro interno do servidor.
+          description: Internal Server Error.
           content:
             application/json:
               schema:
@@ -121,7 +121,7 @@ paths:
                 error:
                   message: "Erro interno do servidor"
         '503':
-          description: Serviço temporariamente indisponível.
+          description: Service Unavailable — Service temporarily unavailable.
           content:
             application/json:
               schema:
@@ -138,14 +138,14 @@ components:
       type: apiKey
       in: header
       name: x-api-key
-      description: API Key gerada em https://app.cpfhub.io
+      description: API key generated at https://app.cpfhub.io
 
   parameters:
     Cpf:
       in: path
       name: cpf
       required: true
-      description: CPF com somente números, sem pontuação (11 dígitos).
+      description: Brazilian CPF number, digits only, no punctuation (11 digits).
       schema:
         type: string
         pattern: '^\d{11}$'
@@ -160,7 +160,7 @@ components:
       properties:
         success:
           type: boolean
-          description: Indica se a consulta foi bem-sucedida.
+          description: Indicates whether the lookup was successful.
           example: true
         data:
           $ref: '#/components/schemas/CpfData'
@@ -170,30 +170,30 @@ components:
       properties:
         cpf:
           type: string
-          description: CPF consultado (somente números).
+          description: The queried CPF number (digits only).
           example: "00000000000"
         name:
           type: string
-          description: Nome completo.
+          description: Full name of the person.
           example: "Fulano de Tal"
         nameUpper:
           type: string
-          description: Nome completo em maiúsculas.
+          description: Full name in uppercase.
           example: "FULANO DE TAL"
         gender:
           type: string
-          description: Gênero (M = masculino, F = feminino).
+          description: Gender (M = male, F = female).
           enum:
             - M
             - F
           example: "M"
         birthDate:
           type: string
-          description: Data de nascimento no formato DD/MM/YYYY.
+          description: Date of birth in DD/MM/YYYY format.
           example: "15/06/1990"
         day:
           type: integer
-          description: Dia de nascimento.
+          description: Day of birth.
           minimum: 1
           maximum: 31
           example: 15
@@ -205,7 +205,7 @@ components:
           example: 6
         year:
           type: integer
-          description: Ano de nascimento.
+          description: Year of birth.
           example: 1990
 
     ErrorResponse:
@@ -217,11 +217,11 @@ components:
       properties:
         success:
           type: boolean
-          description: Sempre false em respostas de erro.
+          description: Always false for error responses.
           example: false
         data:
           nullable: true
-          description: Sempre null em respostas de erro.
+          description: Always null for error responses.
           example: null
         error:
           type: object
@@ -230,5 +230,5 @@ components:
           properties:
             message:
               type: string
-              description: Mensagem descritiva do erro em português.
+              description: Descriptive error message returned by the API (in Brazilian Portuguese).
               example: "CPF inválido"
