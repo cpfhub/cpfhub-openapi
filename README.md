@@ -128,7 +128,7 @@ curl -X GET "https://api.cpfhub.io/cpf/12345678909" \
   -H "x-api-key: SUA_CHAVE_DE_API"
 ```
 
-**Response:**
+**Resposta:**
 
 ```json
 {
@@ -156,7 +156,7 @@ O arquivo `openapi.yaml` neste repositório é a versão oficial e mais atualiza
 https://raw.githubusercontent.com/cpfhub/cpfhub-openapi/main/openapi.yaml
 ```
 
-> **Note:** Uma versão hospedada publicamente em `https://api.cpfhub.io/openapi.yaml` estará disponível em breve para consumo direto por agentes de IA.
+> **Nota:** Uma versão hospedada publicamente em `https://api.cpfhub.io/openapi.yaml` estará disponível em breve para consumo direto por agentes de IA.
 
 ## Definição de Tool (Ferramenta de IA)
 
