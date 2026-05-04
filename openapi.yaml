@@ -145,11 +145,12 @@ components:
       in: path
       name: cpf
       required: true
-      description: Brazilian CPF number, digits only, no punctuation (11 digits).
+      description: |
+        Brazilian CPF number. Accepts formatted (`XXX.XXX.XXX-XX`) or digits only (`XXXXXXXXXXX`).
       schema:
         type: string
-        pattern: '^\d{11}$'
-        example: "31592165869"
+        pattern: '^\d{3}\.?\d{3}\.?\d{3}-?\d{2}$'
+        example: "123.456.789-00"
 
   schemas:
     CpfResponse:
@@ -171,7 +172,7 @@ components:
         cpf:
           type: string
           description: The queried CPF number (digits only).
-          example: "00000000000"
+          example: "12345678900"
         name:
           type: string
           description: Full name of the person.
@@ -199,7 +200,7 @@ components:
           example: 15
         month:
           type: integer
-          description: Mês de nascimento.
+          description: Month of birth.
           minimum: 1
           maximum: 12
           example: 6
